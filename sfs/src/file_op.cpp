@@ -3,7 +3,7 @@
 
 namespace sfs
 {
-    FileOperation::FileOperation(const std::string &file_name, const int open_flags = O_RDWR | O_LARGEFILE)
+    FileOperation::FileOperation(const std::string &file_name, const int open_flags) : fd_(-1), open_flags_(open_flags)
     {
         // 重新分配一份内存，将file_name赋值给file_name_
         file_name_ = strdup(file_name.c_str());

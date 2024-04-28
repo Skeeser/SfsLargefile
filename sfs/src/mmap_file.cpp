@@ -108,6 +108,7 @@ namespace sfs
     {
         return data_;
     }
+
     // 取映射到内存数据的大小
     int32_t MMapFile::getSize() const
     {
@@ -127,6 +128,7 @@ namespace sfs
         }
     }
 
+    // 读文件
     bool MMapFile::remapFile()
     {
         if (fd_ < 0 || data_ == NULL)
@@ -146,7 +148,6 @@ namespace sfs
         if (new_size > mmap_file_option_.max_mmap_size_)
         {
             new_size = mmap_file_option_.max_mmap_size_;
-            return false;
         }
 
         // 重新设置文件大小

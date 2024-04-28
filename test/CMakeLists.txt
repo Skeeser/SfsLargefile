@@ -1,8 +1,10 @@
 
 
 set(SOURCES
-    mmap_file_test.cpp
     alltest_main.cpp
+    mmap_file_test.cpp
+    file_op_test.cpp
+    mmap_file_op_test.cpp
 )
 
 add_executable(test ${SOURCES})
