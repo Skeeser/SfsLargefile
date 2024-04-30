@@ -46,7 +46,13 @@ namespace sfs
         return TFS_SUCCESS;
     }
 
-    int MMapFileOperation::preadFile(char *buf, const int32_t size, const int64_t offset)
+    int MMapFileOperation::checkFile()
+    {
+        return checkFile_();
+    }
+
+    int
+    MMapFileOperation::preadFile(char *buf, const int32_t size, const int64_t offset)
     {
         // 内存已经完成映射 (读虚拟内存)
         if (is_mapped_)
@@ -103,6 +109,11 @@ namespace sfs
             }
         }
 
+        // if (DEBUG)
+        // {
+
+        //     fprintf(stderr, "is_map:%d, mmap write failed\n", is_mapped_);
+        // }
         // 内存没完成映射或者映射空间不全(文件io读取数据)
         return FileOperation::pwriteFile(buf, size, offset);
     }
@@ -128,6 +139,6 @@ namespace sfs
         }
 
         // 如果没有内存映射
-        return MMapFileOperation::flushFile();
+        return FileOperation::flushFile();
     }
 }

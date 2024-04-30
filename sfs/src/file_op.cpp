@@ -30,6 +30,19 @@ namespace sfs
             ::close(fd_);
             fd_ = -1;
         }
+
+        // 创建文件夹
+        std::string tmp_str = file_name_;
+        int pos = tmp_str.find_last_of('/');
+        if (pos != std::string::npos)
+        {
+            tmp_str.erase(pos, tmp_str.length() - pos);
+            if (tmp_str != ".")
+            {
+                std::filesystem::create_directories(tmp_str);
+            }
+        }
+
         fd_ = ::open(file_name_, open_flags_, OPEN_MODE);
         if (fd_ < 0)
         {
@@ -175,6 +188,7 @@ namespace sfs
             }
 
             written_len = ::pwrite64(fd_, p_tmp, left, written_offset);
+            // std::cout << " pwrite ret : " << fd_ << std::endl;
             if (written_len < 0)
             {
                 written_len = -errno;

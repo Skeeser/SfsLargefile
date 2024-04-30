@@ -2,6 +2,7 @@ set(SOURCES
     mmap_file.cpp
     file_op.cpp
     mmap_file_op.cpp
+    index_handle.cpp
 )
 
 add_library(sfs ${SOURCES})

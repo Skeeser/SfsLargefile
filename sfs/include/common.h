@@ -40,7 +40,8 @@ namespace sfs
     const int32_t EXIT_INDEX_CORRUPT_ERROR = -8030;        // index is corrupted, and index is created
 
     // 定义路径
-    static const std::string MAINBLOCK_DIR_PREFIX = "/mainblock/";
+    static const std::string MAINBLOCK_DIR_SINGLE_PREFIX = "mainblock";
+    static const std::string MAINBLOCK_DIR_PREFIX = "/" + MAINBLOCK_DIR_SINGLE_PREFIX + "/";
     static const std::string INDEX_DIR_PREFIX = "/index/";
     static const mode_t DIR_MODE = 0755;
 
@@ -136,52 +137,52 @@ namespace sfs
         }
 
         // 获取键值
-        uint64_t get_key()
+        uint64_t getKey()
         {
             return fileid_;
         }
 
-        void set_key(const uint64_t key)
+        void setKey(const uint64_t key)
         {
             fileid_ = key;
         }
 
-        uint64_t get_file_id() const
+        uint64_t getFileId() const
         {
             return fileid_;
         }
 
-        void set_file_id(const uint64_t file_id)
+        void setFileId(const uint64_t file_id)
         {
             fileid_ = file_id;
         }
 
-        int32_t get_offset() const
+        int32_t getOffset() const
         {
             return location_.inner_offset_;
         }
 
-        void set_offset(const int32_t offset)
+        void setOffset(const int32_t offset)
         {
             location_.inner_offset_ = offset;
         }
 
-        int32_t get_size() const
+        int32_t getSize() const
         {
             return location_.size_;
         }
 
-        void set_size(const int32_t file_size)
+        void setSize(const int32_t file_size)
         {
             location_.size_ = file_size;
         }
 
-        int32_t get_next_meta_offset() const
+        int32_t getNextMetaOffset() const
         {
             return next_meta_offset_;
         }
 
-        void set_next_meta_offset(const int32_t offset)
+        void setNextMetaOffset(const int32_t offset)
         {
             next_meta_offset_ = offset;
         }

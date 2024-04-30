@@ -30,6 +30,7 @@ namespace sfs
         // 获取映射的数据
         void *getMapDataAddr() const;
         int flushFile();
+        int checkFile();
 
     private:
         // 映射文件

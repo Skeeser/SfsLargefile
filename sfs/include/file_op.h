@@ -1,5 +1,6 @@
 #pragma once
 #include "common.h"
+#include <filesystem>  // c17
 
 // 文件操作相关
 namespace sfs
