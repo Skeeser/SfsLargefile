@@ -6,6 +6,10 @@ set(SOURCES
     file_op_test.cpp
     mmap_file_op_test.cpp
     block_init_test.cpp
+    block_load_test.cpp
+    block_write_test.cpp
+    block_read_test.cpp
+    block_delete_test.cpp
 )
 
 add_executable(test ${SOURCES})

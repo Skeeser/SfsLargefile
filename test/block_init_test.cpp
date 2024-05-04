@@ -41,7 +41,8 @@ TEST(sfs, block_init)
     fprintf(stdout, "init index file...\n");
 
     ret = index_handle->create(block_id, bucket_size, mmap_option);
-    ASSERT_FALSE(ret != TFS_SUCCESS) << "ret:" << ret << " create index " << block_id << " failed. \n";
+    // 创建成功或者已经存在
+    ASSERT_TRUE(ret == TFS_SUCCESS || ret == EXIT_META_UNEXPECT_FOUND_ERROR) << "ret:" << ret << " create index " << block_id << " failed. \n";
 
     // 生成主块文件
     // 创建主块文件（调整为设置的指定大小）
