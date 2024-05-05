@@ -7,7 +7,7 @@
 <br>
 
 <div>
-    <img alt="c++" src="https://img.shields.io/badge/c++-11-%2300599C">
+    <img alt="c++" src="https://img.shields.io/badge/c++-17-%2300599C">
 </div>
 <div>
     <img alt="platform" src="https://img.shields.io/badge/platform-Linux%20-blueviolet">
@@ -28,13 +28,26 @@
 <br>
 
 ## 功能特性
+- 以block文件的形式存放数据文件(一般64M一个block)，每个块都有唯一的一个整数编号，块在使用之前所用到的存储空间都会预先分配和初始化。
+
+- 每一个块由一个索引文件、一个主块文件和若干个扩展块组成，“小文件”主要存放在主块中，扩展块主要用来存放溢出的数据。
+
+- 每个索引文件存放对应的块信息和“小文件”索引信息，索引文件会在服务启动是映射（mmap）到内存，以便极大的提高文件检索速度。“小文件”索引信息采用在索引文件中的数据结构哈希链表来实现。
+
+- 每个文件有对应的文件编号，文件编号从1开始编号，依次递增，同时作为哈希查找算法的Key 来定位“小文件”在主块和扩展块中的偏移量。文件编号+块编号按某种算法可得到“小文件”对应的文件名。
+
 
 
 <br>
 
 ## 文件结构
-
-
+./
+├── assets  
+├── doc  文档  
+├── docker  
+├── sfs  sfs相关代码  
+└── test  功能的单元测试  
+  
 <br>
 
 
@@ -45,7 +58,7 @@ Linux
 
 
 ## 应用技术
-C++、Docker、gRPC、protobuf、Cmake、异步日志
+C++、Docker、Cmake、gtest、内存映射、文件操作
 
 <br>
 
@@ -87,19 +100,10 @@ make -j8
 <br>
 
 ## 运行
-### 启动grpc服务(主服务器)
-在`build`文件夹下  
+### 进行单元测试
 ```shell
-./rpc_manager/server/server
+./test/test  
 ```
-
-### 启动监控(需要监控的服务器)
-```shell
-./monitor_work/src/monitor
-```
-
-### 展示数据
-- [ ] 前端待做
 
 <br>
 
